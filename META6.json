@@ -6,9 +6,9 @@
   "build-depends": [
   ],
   "depends": [
-   "Term::termios"
+    "Term::termios"
   ],
-  "description": "read keypresses unbuffered and non-blocking",
+  "description": "Read unbuffered, non-blocking key presses from STDIN.",
   "license": "Artistic-2.0",
   "name": "Terminal::ReadKey",
   "perl": "6.d",
@@ -17,9 +17,11 @@
   },
   "resources": [
   ],
-  "source-url": "",
+  "source-url": "https://github.com/thundergnat/Terminal-ReadKey.git",
   "tags": [
-   "getkey", "key press", "read key", 
+    "getkey",
+    "key press",
+    "read key"
   ],
   "test-depends": [
   ],
