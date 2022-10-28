@@ -8,7 +8,7 @@
   "depends": [
     "Term::termios"
   ],
-  "description": "Read unbuffered, non-blocking key presses from STDIN.",
+  "description": "Read non-blocking key presses from the keyboard buffer.",
   "license": "Artistic-2.0",
   "name": "Terminal::ReadKey",
   "perl": "6.d",
