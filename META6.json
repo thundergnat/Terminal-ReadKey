@@ -1,0 +1,27 @@
+{
+  "auth": "zef:thundergnat",
+  "authors": [
+    "thundergnat"
+  ],
+  "build-depends": [
+  ],
+  "depends": [
+   "Term::termios"
+  ],
+  "description": "read keypresses unbuffered and non-blocking",
+  "license": "Artistic-2.0",
+  "name": "Terminal::ReadKey",
+  "perl": "6.d",
+  "provides": {
+    "Terminal::ReadKey": "lib/Terminal/ReadKey.rakumod"
+  },
+  "resources": [
+  ],
+  "source-url": "",
+  "tags": [
+   "getkey", "key press", "read key", 
+  ],
+  "test-depends": [
+  ],
+  "version": "0.0.1"
+}

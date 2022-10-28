@@ -1,0 +1,6 @@
+use Test;
+use Terminal::ReadKey;
+
+pass "replace me";
+
+done-testing;
