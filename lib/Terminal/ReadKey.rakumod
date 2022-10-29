@@ -1,7 +1,10 @@
-unit class Terminal::ReadKey;
+unit module Terminal::ReadKey;
 
-my %US = # "cooked" mode keypress hash
-    # single byte
+use Term::termios;
+
+our %keyboard;
+
+%keyboard{'US'} =  { # "cooked" mode key press hash, US layout
     Buf.new(0).decode => ｢Ctrl `｣,
     Buf.new(1).decode => ｢Ctrl A｣,
     Buf.new(2).decode => ｢Ctrl B｣,
@@ -29,7 +32,6 @@ my %US = # "cooked" mode keypress hash
     Buf.new(25).decode => ｢Ctrl Y｣,
     Buf.new(26).decode => ｢Ctrl Z｣,
     Buf.new(27).decode => ｢Esc｣,
-
     Buf.new(29).decode => ｢Ctrl ]｣,
     Buf.new(30).decode => ｢Ctrl ~｣,
     Buf.new(31).decode => ｢Ctrl /｣,
@@ -129,8 +131,6 @@ my %US = # "cooked" mode keypress hash
     Buf.new(125).decode => ｢}｣,
     Buf.new(126).decode => ｢~｣,
     Buf.new(127).decode => ｢Backspace｣,
-
-    # two bytes
     Buf.new(27, 10).decode => ｢Alt Enter｣,
     Buf.new(27, 27).decode => ｢Alt Esc｣,
     Buf.new(27, 33).decode => ｢Alt !｣,
@@ -228,8 +228,6 @@ my %US = # "cooked" mode keypress hash
     Buf.new(27, 125).decode => ｢Alt }｣,
     Buf.new(27, 126).decode => ｢Alt ~｣,
     Buf.new(27, 127).decode => ｢Alt Backspace｣,
-
-    # three bytes
     Buf.new(27, 79, 80).decode => ｢F1｣,
     Buf.new(27, 79, 81).decode => ｢F2｣,
     Buf.new(27, 79, 82).decode => ｢F3｣,
@@ -241,14 +239,10 @@ my %US = # "cooked" mode keypress hash
     Buf.new(27, 91, 69).decode => ｢Center｣,
     Buf.new(27, 91, 70).decode => ｢End｣,
     Buf.new(27, 91, 72).decode => ｢Home｣,
-
-    # four bytes
     Buf.new(27, 91, 50, 126).decode => ｢Insert｣,
     Buf.new(27, 91, 51, 126).decode => ｢Del｣,
     Buf.new(27, 91, 53, 126).decode => ｢PgUp｣,
     Buf.new(27, 91, 54, 126).decode => ｢PgDn｣,
-
-    # five bytes
     Buf.new(27, 91, 49, 53, 126).decode => ｢F5｣,
     Buf.new(27, 91, 49, 55, 126).decode => ｢F6｣,
     Buf.new(27, 91, 49, 56, 126).decode => ｢F7｣,
@@ -257,13 +251,10 @@ my %US = # "cooked" mode keypress hash
     Buf.new(27, 91, 50, 49, 126).decode => ｢F10｣,
     Buf.new(27, 91, 50, 51, 126).decode => ｢F11｣,
     Buf.new(27, 91, 50, 52, 126).decode => ｢F12｣,
-
-    #six bytes
     Buf.new(27, 79, 49, 59, 51, 80).decode => ｢Alt F1｣, # Needs verification
     Buf.new(27, 79, 49, 59, 51, 81).decode => ｢Alt F2｣, # Needs verification
     Buf.new(27, 79, 49, 59, 51, 82).decode => ｢Alt F3｣, # Needs verification
     Buf.new(27, 79, 49, 59, 51, 83).decode => ｢Alt F4｣, # Needs verification
-
     Buf.new(27, 91, 49, 59, 51, 65).decode => ｢Alt Up｣,
     Buf.new(27, 91, 49, 59, 51, 66).decode => ｢Alt Down｣,
     Buf.new(27, 91, 49, 59, 51, 67).decode => ｢Alt Right｣,
@@ -289,8 +280,6 @@ my %US = # "cooked" mode keypress hash
     Buf.new(27, 91, 53, 59, 53, 126).decode => ｢Ctrl PgUp｣,
     Buf.new(27, 91, 54, 59, 51, 126).decode => ｢Alt PgDn｣,
     Buf.new(27, 91, 54, 59, 53, 126).decode => ｢Ctrl PgDn｣,
-
-    # seven bytes
     Buf.new(27, 91, 49, 53, 59, 51, 126).decode => ｢Alt F5｣,
     Buf.new(27, 91, 49, 55, 59, 51, 126).decode => ｢Alt F6｣,
     Buf.new(27, 91, 49, 56, 59, 51, 126).decode => ｢Alt F7｣,
@@ -307,9 +296,9 @@ my %US = # "cooked" mode keypress hash
     Buf.new(27, 91, 50, 49, 59, 53, 126).decode => ｢Ctrl F10｣,
     Buf.new(27, 91, 50, 51, 59, 53, 126).decode => ｢Ctrl F11｣,
     Buf.new(27, 91, 50, 52, 59, 53, 126).decode => ｢Ctrl F12｣,
-;
+};
 
-sub cooked ($char) is export(:cooked) { %US{$char} // $char.ords }
+sub cooked ($char, :$layout = 'US') is export(:cooked) { %keyboard{$layout}{$char} // $char.ords }
 
 use Term::termios;
 
@@ -326,7 +315,12 @@ sub with-termios(Callable:D $fn, Bool:D :$echo = True --> Str) {
     $result;
 }
 
-sub key-pressed (Bool:D :$echo = False, Bool:D :$raw = False --> Supply) is export {
+sub key-pressed (
+  Bool:D :$echo = False,
+  Bool:D :$raw = False,
+  :$layout = 'US'
+  --> Supply
+  ) is export {
     my Supplier $supplier .= new;
     my $done = False;
     my $supply = $supplier.Supply.on-close: { $done = True };
@@ -336,7 +330,7 @@ sub key-pressed (Bool:D :$echo = False, Bool:D :$raw = False --> Supply) is expo
             sub {
                 until $done {
                     my $char = $*IN.read(8).decode;
-                    $supplier.emit: $raw ?? $char !! cooked $char;
+                    $supplier.emit: $raw ?? $char !! cooked($char, :$layout);
                 }
             },
             :$echo
