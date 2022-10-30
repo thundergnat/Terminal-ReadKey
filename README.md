@@ -58,7 +58,7 @@ react { whenever key-pressed( :raw, :echo ) { $fh.print( .&cooked ); $fh.flush }
 BUGS
 ====
 
-Since Terminal::ReadKey interacts with the keyboard buffer rather than reading the keyboard directly, it has no way to differentiate different keypresses that result in the same "keypress" in the buffer. For instance, if it reads a "Ctrl *", it has no way to tell _which_ Ctrl key may have been pressed, only that there _was_ a Ctrl key pressed. Same with Shift, Enter, or any other key combination that may be entered in multiple ways.
+Since Terminal::ReadKey interacts with the keyboard buffer rather than reading the keyboard directly, it has no way to differentiate different keypress sequences that result in the same "keypress" in the buffer. For instance, if it reads a "Ctrl PgUp", it has no way to tell _which_ Ctrl key or _which_ PgUp key may have been pressed, only that there _was_ one of each pressed. Same with Shift, Enter, or any other key combination that may be entered in multiple ways.
 
 That also means that it can be affected by the OS / window managers typing repeat setting. It doesn't see, and is not responding to the actual key press, rather the presence of "key-presses" in the keyboard buffer.
 
@@ -70,13 +70,15 @@ There are a few key combinations that I haven't yet been able to capture because
 
   * Alt F3
 
-  * Alt F4
-
   * Alt Tab
 
   * Ctrl Insert
 
-This was written and tested on a US English keyboard. Characters on non-US keyboards will likely not have correct "cooked" mode support.
+  * Shift Insert
+
+The key combination "Shift Insert" seems to yeild almost random key codes. I believe it is stuffing the buffer with whatever is in the cut/paste buffer, so doesn't reliably return a repeatable keypress sequence (if the cut/paste buffer contents changes).
+
+This was written and tested on a US English keyboard. Characters on non-US keyboards may not have correct "cooked" mode support.
 
 AUTHOR
 ======

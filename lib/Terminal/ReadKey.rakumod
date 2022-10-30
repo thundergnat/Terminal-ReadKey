@@ -131,8 +131,36 @@ our %keyboard;
     Buf.new(125).decode => ｢}｣,
     Buf.new(126).decode => ｢~｣,
     Buf.new(127).decode => ｢Backspace｣,
+    Buf.new(27, 0).decode => ｢Ctrl Alt @｣,
+    Buf.new(27, 1).decode => ｢Ctrl Alt a｣,
+    Buf.new(27, 2).decode => ｢Ctrl Alt b｣,
+    Buf.new(27, 3).decode => ｢Ctrl Alt c｣,
+    Buf.new(27, 4).decode => ｢Ctrl Alt d｣,
+    Buf.new(27, 5).decode => ｢Ctrl Alt e｣,
+    Buf.new(27, 6).decode => ｢Ctrl Alt f｣,
+    Buf.new(27, 7).decode => ｢Ctrl Alt g｣,
+    Buf.new(27, 8).decode => ｢Ctrl Alt h｣,
+    Buf.new(27, 9).decode => ｢Ctrl Alt i｣,
     Buf.new(27, 10).decode => ｢Alt Enter｣,
+    Buf.new(27, 11).decode => ｢Ctrl Alt k｣,
+    Buf.new(27, 12).decode => ｢Ctrl Alt l｣,
+    Buf.new(27, 13).decode => ｢Ctrl Alt m｣,
+    Buf.new(27, 14).decode => ｢Ctrl Alt n｣,
+    Buf.new(27, 15).decode => ｢Ctrl Alt o｣,
+    Buf.new(27, 16).decode => ｢Ctrl Alt p｣,
+    Buf.new(27, 17).decode => ｢Ctrl Alt q｣,
+    Buf.new(27, 18).decode => ｢Ctrl Alt r｣,
+    Buf.new(27, 19).decode => ｢Ctrl Alt s｣,
+    Buf.new(27, 20).decode => ｢Ctrl Alt t｣,
+    Buf.new(27, 21).decode => ｢Ctrl Alt u｣,
+    Buf.new(27, 22).decode => ｢Ctrl Alt v｣,
+    Buf.new(27, 23).decode => ｢Ctrl Alt w｣,
+    Buf.new(27, 24).decode => ｢Ctrl Alt x｣,
+    Buf.new(27, 25).decode => ｢Ctrl Alt y｣,
+    Buf.new(27, 26).decode => ｢Ctrl Alt z｣,
     Buf.new(27, 27).decode => ｢Alt Esc｣,
+    Buf.new(27, 29).decode => ｢Ctrl Alt ^｣,
+    Buf.new(27, 30).decode => ｢Ctrl Alt ^｣,
     Buf.new(27, 33).decode => ｢Alt !｣,
     Buf.new(27, 34).decode => ｢Alt "｣,
     Buf.new(27, 35).decode => ｢Alt #｣,
@@ -140,14 +168,15 @@ our %keyboard;
     Buf.new(27, 37).decode => ｢Alt %｣,
     Buf.new(27, 38).decode => ｢Alt &｣,
     Buf.new(27, 39).decode => ｢Alt '｣,
-    Buf.new(27, 42).decode => ｢Alt *｣,
     Buf.new(27, 40).decode => ｢Alt (｣,
     Buf.new(27, 41).decode => ｢Alt )｣,
+    Buf.new(27, 42).decode => ｢Alt *｣,
     Buf.new(27, 43).decode => ｢Alt +｣,
     Buf.new(27, 44).decode => ｢Alt ,｣,
     Buf.new(27, 45).decode => ｢Alt -｣,
     Buf.new(27, 46).decode => ｢Alt .｣,
     Buf.new(27, 47).decode => ｢Alt /｣,
+    Buf.new(27, 48).decode => ｢Alt 0｣,
     Buf.new(27, 48).decode => ｢Alt 0｣,
     Buf.new(27, 49).decode => ｢Alt 1｣,
     Buf.new(27, 50).decode => ｢Alt 2｣,
@@ -228,6 +257,8 @@ our %keyboard;
     Buf.new(27, 125).decode => ｢Alt }｣,
     Buf.new(27, 126).decode => ｢Alt ~｣,
     Buf.new(27, 127).decode => ｢Alt Backspace｣,
+    Buf.new(50, 48).decode => ｢Shift Del｣,
+    Buf.new(52, 56).decode => ｢Shift Insert｣,
     Buf.new(27, 79, 80).decode => ｢F1｣,
     Buf.new(27, 79, 81).decode => ｢F2｣,
     Buf.new(27, 79, 82).decode => ｢F3｣,
@@ -239,6 +270,7 @@ our %keyboard;
     Buf.new(27, 91, 69).decode => ｢Center｣,
     Buf.new(27, 91, 70).decode => ｢End｣,
     Buf.new(27, 91, 72).decode => ｢Home｣,
+    Buf.new(27, 91, 90).decode => ｢Shift Tab｣,
     Buf.new(27, 91, 50, 126).decode => ｢Insert｣,
     Buf.new(27, 91, 51, 126).decode => ｢Del｣,
     Buf.new(27, 91, 53, 126).decode => ｢PgUp｣,
@@ -251,10 +283,14 @@ our %keyboard;
     Buf.new(27, 91, 50, 49, 126).decode => ｢F10｣,
     Buf.new(27, 91, 50, 51, 126).decode => ｢F11｣,
     Buf.new(27, 91, 50, 52, 126).decode => ｢F12｣,
-    Buf.new(27, 79, 49, 59, 51, 80).decode => ｢Alt F1｣, # Needs verification
-    Buf.new(27, 79, 49, 59, 51, 81).decode => ｢Alt F2｣, # Needs verification
-    Buf.new(27, 79, 49, 59, 51, 82).decode => ｢Alt F3｣, # Needs verification
-    Buf.new(27, 79, 49, 59, 51, 83).decode => ｢Alt F4｣, # Needs verification
+    Buf.new(27, 79, 49, 59, 51, 80).decode => ｢Alt F1｣,
+    Buf.new(27, 79, 49, 59, 51, 81).decode => ｢Alt F2｣,
+    Buf.new(27, 79, 49, 59, 51, 82).decode => ｢Alt F3｣,
+    Buf.new(27, 79, 49, 59, 51, 83).decode => ｢Alt F4｣,
+    Buf.new(27, 91, 49, 59, 50, 80).decode => ｢Shift F1｣,
+    Buf.new(27, 91, 49, 59, 50, 81).decode => ｢Shift F2｣,
+    Buf.new(27, 91, 49, 59, 50, 82).decode => ｢Shift F3｣,
+    Buf.new(27, 91, 49, 59, 50, 83).decode => ｢Shift F4｣,
     Buf.new(27, 91, 49, 59, 51, 65).decode => ｢Alt Up｣,
     Buf.new(27, 91, 49, 59, 51, 66).decode => ｢Alt Down｣,
     Buf.new(27, 91, 49, 59, 51, 67).decode => ｢Alt Right｣,
@@ -262,6 +298,10 @@ our %keyboard;
     Buf.new(27, 91, 49, 59, 51, 69).decode => ｢Alt Center｣,
     Buf.new(27, 91, 49, 59, 51, 70).decode => ｢Alt End｣,
     Buf.new(27, 91, 49, 59, 51, 72).decode => ｢Alt Home｣,
+    Buf.new(27, 91, 49, 59, 52, 80).decode => ｢Alt Shift F1｣,
+    Buf.new(27, 91, 49, 59, 52, 81).decode => ｢Alt Shift F2｣,
+    Buf.new(27, 91, 49, 59, 52, 82).decode => ｢Alt Shift F3｣,
+    Buf.new(27, 91, 49, 59, 52, 83).decode => ｢Alt Shift F4｣,
     Buf.new(27, 91, 49, 59, 53, 65).decode => ｢Ctrl Up｣,
     Buf.new(27, 91, 49, 59, 53, 66).decode => ｢Ctrl Down｣,
     Buf.new(27, 91, 49, 59, 53, 67).decode => ｢Ctrl Right｣,
@@ -273,32 +313,89 @@ our %keyboard;
     Buf.new(27, 91, 49, 59, 53, 81).decode => ｢Ctrl F2｣,
     Buf.new(27, 91, 49, 59, 53, 82).decode => ｢Ctrl F3｣,
     Buf.new(27, 91, 49, 59, 53, 83).decode => ｢Ctrl F4｣,
+    Buf.new(27, 91, 49, 59, 54, 72).decode => ｢Ctrl Alt Home｣,
+    Buf.new(27, 91, 49, 59, 54, 80).decode => ｢Ctrl Shift F1｣,
+    Buf.new(27, 91, 49, 59, 54, 81).decode => ｢Ctrl Shift F2｣,
+    Buf.new(27, 91, 49, 59, 54, 82).decode => ｢Ctrl Shift F3｣,
+    Buf.new(27, 91, 49, 59, 54, 83).decode => ｢Ctrl Shift F4｣,
+    Buf.new(27, 91, 49, 59, 55, 65).decode => ｢Ctrl Alt Up｣,
+    Buf.new(27, 91, 49, 59, 55, 66).decode => ｢Ctrl Alt Down｣,
+    Buf.new(27, 91, 49, 59, 55, 67).decode => ｢Ctrl Alt Right｣,
+    Buf.new(27, 91, 49, 59, 55, 68).decode => ｢Ctrl Alt Left｣,
+    Buf.new(27, 91, 49, 59, 55, 69).decode => ｢Ctrl Alt Center｣,
+    Buf.new(27, 91, 49, 59, 56, 80).decode => ｢Ctrl Alt Shift F1｣,
+    Buf.new(27, 91, 49, 59, 56, 81).decode => ｢Ctrl Alt Shift F2｣,
+    Buf.new(27, 91, 49, 59, 56, 82).decode => ｢Ctrl Alt Shift F3｣,
+    Buf.new(27, 91, 49, 59, 56, 83).decode => ｢Ctrl Alt Shift F4｣,
+    Buf.new(27, 91, 50, 59, 50, 126).decode => ｢Shift Insert｣,
     Buf.new(27, 91, 50, 59, 51, 126).decode => ｢Alt Insert｣,
+    Buf.new(27, 91, 51, 59, 50, 126).decode => ｢Shift Del｣,
     Buf.new(27, 91, 51, 59, 51, 126).decode => ｢Alt Del｣,
+    Buf.new(27, 91, 51, 59, 52, 126).decode => ｢Alt Shift Del｣,
     Buf.new(27, 91, 51, 59, 53, 126).decode => ｢Ctrl Del｣,
+    Buf.new(27, 91, 51, 59, 54, 126).decode => ｢Ctrl Shift Del｣,
+    Buf.new(27, 91, 51, 59, 55, 126).decode => ｢Ctrl Alt Del｣,
     Buf.new(27, 91, 53, 59, 51, 126).decode => ｢Alt PgUp｣,
     Buf.new(27, 91, 53, 59, 53, 126).decode => ｢Ctrl PgUp｣,
+    Buf.new(27, 91, 53, 59, 55, 126).decode => ｢Ctrl Alt PgUp｣,
     Buf.new(27, 91, 54, 59, 51, 126).decode => ｢Alt PgDn｣,
     Buf.new(27, 91, 54, 59, 53, 126).decode => ｢Ctrl PgDn｣,
+    Buf.new(27, 91, 54, 59, 55, 126).decode => ｢Ctrl Alt PgDn｣,
+    Buf.new(27, 91, 49, 53, 59, 50, 126).decode => ｢Shift F5｣,
     Buf.new(27, 91, 49, 53, 59, 51, 126).decode => ｢Alt F5｣,
-    Buf.new(27, 91, 49, 55, 59, 51, 126).decode => ｢Alt F6｣,
-    Buf.new(27, 91, 49, 56, 59, 51, 126).decode => ｢Alt F7｣,
-    Buf.new(27, 91, 49, 57, 59, 51, 126).decode => ｢Alt F8｣,
-    Buf.new(27, 91, 50, 48, 59, 51, 126).decode => ｢Alt F9｣,
-    Buf.new(27, 91, 50, 49, 59, 51, 126).decode => ｢Alt F10｣,
-    Buf.new(27, 91, 50, 51, 59, 51, 126).decode => ｢Alt F11｣,
-    Buf.new(27, 91, 50, 52, 59, 51, 126).decode => ｢Alt F12｣,
+    Buf.new(27, 91, 49, 53, 59, 52, 126).decode => ｢Alt Shift F5｣,
     Buf.new(27, 91, 49, 53, 59, 53, 126).decode => ｢Ctrl F5｣,
+    Buf.new(27, 91, 49, 53, 59, 54, 126).decode => ｢Ctrl Shift F5｣,
+    Buf.new(27, 91, 49, 53, 59, 56, 126).decode => ｢Ctrl Alt Shift F5｣,
+    Buf.new(27, 91, 49, 55, 59, 50, 126).decode => ｢Shift F6｣,
+    Buf.new(27, 91, 49, 55, 59, 51, 126).decode => ｢Alt F6｣,
+    Buf.new(27, 91, 49, 55, 59, 52, 126).decode => ｢Alt Shift F6｣,
     Buf.new(27, 91, 49, 55, 59, 53, 126).decode => ｢Ctrl F6｣,
+    Buf.new(27, 91, 49, 55, 59, 54, 126).decode => ｢Ctrl Shift F6｣,
+    Buf.new(27, 91, 49, 55, 59, 56, 126).decode => ｢Ctrl Alt Shift F6｣,
+    Buf.new(27, 91, 49, 56, 59, 50, 126).decode => ｢Shift F7｣,
+    Buf.new(27, 91, 49, 56, 59, 51, 126).decode => ｢Alt F7｣,
+    Buf.new(27, 91, 49, 56, 59, 52, 126).decode => ｢Alt Shift F7｣,
     Buf.new(27, 91, 49, 56, 59, 53, 126).decode => ｢Ctrl F7｣,
+    Buf.new(27, 91, 49, 56, 59, 54, 126).decode => ｢Ctrl Shift F7｣,
+    Buf.new(27, 91, 49, 56, 59, 56, 126).decode => ｢Ctrl Alt Shift F7｣,
+    Buf.new(27, 91, 49, 57, 59, 50, 126).decode => ｢Shift F8｣,
+    Buf.new(27, 91, 49, 57, 59, 51, 126).decode => ｢Alt F8｣,
+    Buf.new(27, 91, 49, 57, 59, 52, 126).decode => ｢Alt Shift F7｣,
     Buf.new(27, 91, 49, 57, 59, 53, 126).decode => ｢Ctrl F8｣,
+    Buf.new(27, 91, 49, 57, 59, 54, 126).decode => ｢Ctrl Shift F7｣,
+    Buf.new(27, 91, 49, 57, 59, 56, 126).decode => ｢Ctrl Alt Shift F7｣,
+    Buf.new(27, 91, 50, 48, 59, 50, 126).decode => ｢Shift F9｣,
+    Buf.new(27, 91, 50, 48, 59, 51, 126).decode => ｢Alt F9｣,
+    Buf.new(27, 91, 50, 48, 59, 52, 126).decode => ｢Alt Shift F9｣,
     Buf.new(27, 91, 50, 48, 59, 53, 126).decode => ｢Ctrl F9｣,
+    Buf.new(27, 91, 50, 48, 59, 54, 126).decode => ｢Ctrl Shift F9｣,
+    Buf.new(27, 91, 50, 48, 59, 56, 126).decode => ｢Ctrl Alt Shift F9｣,
+    Buf.new(27, 91, 50, 49, 59, 50, 126).decode => ｢Shift F10｣,
+    Buf.new(27, 91, 50, 49, 59, 51, 126).decode => ｢Alt F10｣,
+    Buf.new(27, 91, 50, 49, 59, 52, 126).decode => ｢Alt Shift F10｣,
     Buf.new(27, 91, 50, 49, 59, 53, 126).decode => ｢Ctrl F10｣,
+    Buf.new(27, 91, 50, 49, 59, 54, 126).decode => ｢Ctrl Shift F10｣,
+    Buf.new(27, 91, 50, 49, 59, 56, 126).decode => ｢Ctrl Alt Shift F10｣,
+    Buf.new(27, 91, 50, 51, 59, 50, 126).decode => ｢Shift F11｣,
+    Buf.new(27, 91, 50, 51, 59, 51, 126).decode => ｢Alt F11｣,
+    Buf.new(27, 91, 50, 51, 59, 52, 126).decode => ｢Alt Shift F11｣,
     Buf.new(27, 91, 50, 51, 59, 53, 126).decode => ｢Ctrl F11｣,
+    Buf.new(27, 91, 50, 51, 59, 54, 126).decode => ｢Ctrl Shift F11｣,
+    Buf.new(27, 91, 50, 51, 59, 56, 126).decode => ｢Ctrl Alt Shift F11｣,
+    Buf.new(27, 91, 50, 52, 59, 50, 126).decode => ｢Shift F12｣,
+    Buf.new(27, 91, 50, 52, 59, 51, 126).decode => ｢Alt F12｣,
+    Buf.new(27, 91, 50, 52, 59, 52, 126).decode => ｢Alt Shift F12｣,
     Buf.new(27, 91, 50, 52, 59, 53, 126).decode => ｢Ctrl F12｣,
+    Buf.new(27, 91, 50, 52, 59, 54, 126).decode => ｢Ctrl Shift F12｣,
+    Buf.new(27, 91, 50, 52, 59, 56, 126).decode => ｢Ctrl Alt Shift F12｣,
 };
 
-sub cooked ($char, :$layout = 'US') is export(:cooked) { %keyboard{$layout}{$char} // $char.ords }
+sub cooked ($char, :$layout = 'US') is export(:cooked) {
+    %keyboard{$layout}{$char} ?? %keyboard{$layout}{$char} !!
+    $char.substr(0,1) eq Buf.new(27).decode ?? $char.ords !!
+    $char
+}
 
 use Term::termios;
 
@@ -329,7 +426,7 @@ sub key-pressed (
         with-termios(
             sub {
                 until $done {
-                    my $char = $*IN.read(8).decode;
+                    my $char = $*IN.read(10).decode;
                     $supplier.emit: $raw ?? $char !! cooked($char, :$layout);
                 }
             },
@@ -412,11 +509,11 @@ react { whenever key-pressed( :raw, :echo ) { $fh.print( .&cooked ); $fh.flush }
 =head1 BUGS
 
 Since Terminal::ReadKey interacts with the keyboard buffer rather than reading
-the keyboard directly, it has no way to differentiate different keypresses that
-result in the same "keypress" in the buffer. For instance, if it reads a "Ctrl
-*", it has no way to tell _which_ Ctrl key may have been pressed, only that
-there _was_ a Ctrl key pressed. Same with Shift, Enter, or any other key
-combination that may be entered in multiple ways.
+the keyboard directly, it has no way to differentiate different keypress
+sequences that result in the same "keypress" in the buffer. For instance, if it
+reads a "Ctrl PgUp", it has no way to tell _which_ Ctrl key or _which_ PgUp key
+may have been pressed, only that there _was_ one of each pressed. Same with
+Shift, Enter, or any other key combination that may be entered in multiple ways.
 
 That also means that it can be affected by the OS / window managers typing
 repeat setting. It doesn't see, and is not responding to the actual key press,
@@ -430,13 +527,18 @@ get it into a future release. Notably missing (or at least, unverified):
 =item Alt F1
 =item Alt F2
 =item Alt F3
-=item Alt F4
 =item Alt Tab
 =item Ctrl Insert
+=item Shift Insert
+
+The key combination "Shift Insert" seems to yeild almost random key codes. I
+believe it is stuffing the buffer with whatever is in the cut/paste buffer, so
+doesn't reliably return a repeatable keypress sequence (if the cut/paste buffer
+contents changes).
 
 
 This was written and tested on a US English keyboard. Characters on non-US
-keyboards will likely not have correct "cooked" mode support.
+keyboards may not have correct "cooked" mode support.
 
 
 
