@@ -1,5 +1,3 @@
-[![Actions Status](https://github.com/thundergnat/Terminal-ReadKey/actions/workflows/test.yml/badge.svg)](https://github.com/thundergnat/Terminal-ReadKey/actions)
-
 NAME
 ====
 
@@ -58,11 +56,13 @@ react { whenever key-pressed( :raw, :echo ) { $fh.print( .&cooked ); $fh.flush }
 BUGS
 ====
 
-Since Terminal::ReadKey interacts with the keyboard buffer rather than reading the keyboard directly, it has no way to differentiate different keypress sequences that result in the same "keypress" in the buffer. For instance, if it reads a "Ctrl PgUp", it has no way to tell _which_ Ctrl key or _which_ PgUp key may have been pressed, only that there _was_ one of each pressed. Same with Shift, Enter, or any other key combination that may be entered in multiple ways.
+Since Terminal::ReadKey interacts with the keyboard buffer rather than reading the keyboard directly, it has no way to differentiate different keypress sequences that result in the same keypress code(s) in the buffer. For instance, if it reads a "Ctrl PgUp", it has no way to tell _which_ Ctrl key or _which_ PgUp key may have been pressed, only that there _was_ one of each pressed. Same with Shift, Enter, or any other key combination that may be entered in multiple ways.
 
-That also means that it can be affected by the OS / window managers typing repeat setting. It doesn't see, and is not responding to the actual key press, rather the presence of "key-presses" in the keyboard buffer.
+That also means that it can be affected by the OS / window managers typing repeat setting. It doesn't see, and is not responding to the actual key press, rather the presence of key codes in the keyboard buffer.
 
-There are a few key combinations that I haven't yet been able to capture because either X11 or the terminal emulator grabs the keypress on my system. If you are able to capture the keypress byte sequence, send a bug report or pull request to get it into a future release. Notably missing (or at least, unverified):
+There are a few key combinations that I haven't yet been able to capture because something grabs the key codes before it can be processed.
+
+    Notably missing (or at least, unverified):
 
   * Alt F1
 
@@ -76,7 +76,9 @@ There are a few key combinations that I haven't yet been able to capture because
 
   * Shift Insert
 
-The key combination "Shift Insert" seems to yeild almost random key codes. I believe it is stuffing the buffer with whatever is in the cut/paste buffer, so doesn't reliably return a repeatable keypress sequence (if the cut/paste buffer contents changes).
+  * Ctrl Shift |
+
+The key combination "Shift Insert" stuffs the keyboard buffer with whatever is in the cut/paste buffer rather than the actual key codes, so doesn't reliably return a repeatable keypress sequence (if the cut/paste buffer contents changes).
 
 This was written and tested on a US English keyboard. Characters on non-US keyboards may not have correct "cooked" mode support.
 
