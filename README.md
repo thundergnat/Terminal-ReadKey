@@ -1,3 +1,5 @@
+[![Actions Status](https://github.com/thundergnat/Terminal-ReadKey/actions/workflows/test.yml/badge.svg)](https://github.com/thundergnat/Terminal-ReadKey/actions)
+
 NAME
 ====
 
