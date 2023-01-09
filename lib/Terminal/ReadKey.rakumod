@@ -399,7 +399,7 @@ sub cooked ($char, :$layout = 'US') is export(:cooked) {
 
 use Term::termios;
 
-sub with-termios(Callable:D $fn, Bool:D :$echo = True --> Str) {
+sub with-termios(Callable:D $fn, Bool:D :$echo = True) is export(:_testing) {
     my $original-flags := Term::termios.new(:fd($*IN.native-descriptor)).getattr;
     my $flags := Term::termios.new(:fd($*IN.native-descriptor)).getattr;
 

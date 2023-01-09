@@ -1,6 +1,7 @@
 Revision history for Terminal-ReadKey
 
 {{$NEXT}}
+    - [bugfix] Eliminate error inside async thread due to wrong return type
 
 0.0.1  2022-12-22T09:47:52-05:00
     - Initial version

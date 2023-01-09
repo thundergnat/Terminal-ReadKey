@@ -1,0 +1,10 @@
+#!/usr/bin/perl
+
+use Test;
+use Terminal::ReadKey (:_testing);
+
+MAIN: {
+    lives-ok( { with-termios( sub {} ) }, "with-termios lives");
+    done-testing;
+}
+
