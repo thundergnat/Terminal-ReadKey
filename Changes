@@ -6,6 +6,7 @@ Revision history for Terminal-ReadKey
       Test for return type fix.
       (Thanks to @jmaslak who reported and supplied a fix and test!)
       Change default :echo parameter for with-termios() sub to match key-press() since it is now exported.
+      Add a few cooked key sequences I missed earlier. (Shift Up, Shift Down, Shift Right, Shift Left, Shift Center)
 
 
 0.0.1  2022-12-22T09:47:52-05:00
