@@ -1,4 +1,4 @@
-unit module Terminal::ReadKey;
+unit module Terminal::ReadKey:ver<0.0.2>:auth<zef:thundergnat>;
 
 use Term::termios;
 

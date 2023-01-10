@@ -11,7 +11,7 @@
   "description": "Read non-blocking key presses from the keyboard buffer.",
   "license": "Artistic-2.0",
   "name": "Terminal::ReadKey",
-  "perl": "6.d",
+  "perl": "6.*",
   "provides": {
     "Terminal::ReadKey": "lib/Terminal/ReadKey.rakumod"
   },
@@ -25,5 +25,5 @@
   ],
   "test-depends": [
   ],
-  "version": "0.0.1"
+  "version": "0.0.2"
 }
