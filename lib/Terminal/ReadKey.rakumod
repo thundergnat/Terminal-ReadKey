@@ -257,8 +257,6 @@ our %keyboard;
     Buf.new(27, 125).decode => ｢Alt }｣,
     Buf.new(27, 126).decode => ｢Alt ~｣,
     Buf.new(27, 127).decode => ｢Alt Backspace｣,
-    Buf.new(50, 48).decode => ｢Shift Del｣,
-    Buf.new(52, 56).decode => ｢Shift Insert｣,
     Buf.new(27, 79, 80).decode => ｢F1｣,
     Buf.new(27, 79, 81).decode => ｢F2｣,
     Buf.new(27, 79, 82).decode => ｢F3｣,
@@ -399,7 +397,7 @@ sub cooked ($char, :$layout = 'US') is export(:cooked) {
 
 use Term::termios;
 
-sub with-termios(Callable:D $fn, Bool:D :$echo = True --> Str) {
+sub with-termios(Callable:D $fn, Bool:D :$echo = False) is export(:_testing) {
     my $original-flags := Term::termios.new(:fd($*IN.native-descriptor)).getattr;
     my $flags := Term::termios.new(:fd($*IN.native-descriptor)).getattr;
 
