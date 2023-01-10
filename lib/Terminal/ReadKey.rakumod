@@ -9,7 +9,7 @@ our $termios = Term::termios;
     Buf.new(0).decode => ｢Ctrl `｣,
     Buf.new(1).decode => ｢Ctrl A｣,
     Buf.new(2).decode => ｢Ctrl B｣,
-    Buf.new(3).decode => ｢Ctrl C｣,
+    Buf.new(3).decode => ｢Ctrl C｣, # Speculative
     Buf.new(4).decode => ｢Ctrl D｣,
     Buf.new(5).decode => ｢Ctrl E｣,
     Buf.new(6).decode => ｢Ctrl F｣,
@@ -19,6 +19,7 @@ our $termios = Term::termios;
     Buf.new(10).decode => ｢Enter｣,
     Buf.new(11).decode => ｢Ctrl K｣,
     Buf.new(12).decode => ｢Ctrl L｣,
+    Buf.new(13).decode => ｢Enter｣,
     Buf.new(14).decode => ｢Ctrl N｣,
     Buf.new(15).decode => ｢Ctrl O｣,
     Buf.new(16).decode => ｢Ctrl P｣,
@@ -31,7 +32,7 @@ our $termios = Term::termios;
     Buf.new(23).decode => ｢Ctrl W｣,
     Buf.new(24).decode => ｢Ctrl X｣,
     Buf.new(25).decode => ｢Ctrl Y｣,
-    Buf.new(26).decode => ｢Ctrl Z｣,
+    Buf.new(26).decode => ｢Ctrl Z｣, # Speculative
     Buf.new(27).decode => ｢Esc｣,
     Buf.new(29).decode => ｢Ctrl ]｣,
     Buf.new(30).decode => ｢Ctrl ~｣,
@@ -132,6 +133,7 @@ our $termios = Term::termios;
     Buf.new(125).decode => ｢}｣,
     Buf.new(126).decode => ｢~｣,
     Buf.new(127).decode => ｢Backspace｣,
+
     Buf.new(27, 0).decode => ｢Ctrl Alt @｣,
     Buf.new(27, 1).decode => ｢Ctrl Alt a｣,
     Buf.new(27, 2).decode => ｢Ctrl Alt b｣,
@@ -258,6 +260,7 @@ our $termios = Term::termios;
     Buf.new(27, 125).decode => ｢Alt }｣,
     Buf.new(27, 126).decode => ｢Alt ~｣,
     Buf.new(27, 127).decode => ｢Alt Backspace｣,
+
     Buf.new(27, 79, 80).decode => ｢F1｣,
     Buf.new(27, 79, 81).decode => ｢F2｣,
     Buf.new(27, 79, 82).decode => ｢F3｣,
@@ -270,10 +273,12 @@ our $termios = Term::termios;
     Buf.new(27, 91, 70).decode => ｢End｣,
     Buf.new(27, 91, 72).decode => ｢Home｣,
     Buf.new(27, 91, 90).decode => ｢Shift Tab｣,
+
     Buf.new(27, 91, 50, 126).decode => ｢Insert｣,
     Buf.new(27, 91, 51, 126).decode => ｢Del｣,
     Buf.new(27, 91, 53, 126).decode => ｢PgUp｣,
     Buf.new(27, 91, 54, 126).decode => ｢PgDn｣,
+
     Buf.new(27, 91, 49, 53, 126).decode => ｢F5｣,
     Buf.new(27, 91, 49, 55, 126).decode => ｢F6｣,
     Buf.new(27, 91, 49, 56, 126).decode => ｢F7｣,
@@ -282,15 +287,16 @@ our $termios = Term::termios;
     Buf.new(27, 91, 50, 49, 126).decode => ｢F10｣,
     Buf.new(27, 91, 50, 51, 126).decode => ｢F11｣,
     Buf.new(27, 91, 50, 52, 126).decode => ｢F12｣,
+
+    Buf.new(27, 79, 49, 59, 51, 80).decode => ｢Alt F1｣, # Speculative
+    Buf.new(27, 79, 49, 59, 51, 81).decode => ｢Alt F2｣, # Speculative
+    Buf.new(27, 79, 49, 59, 51, 82).decode => ｢Alt F3｣, # Speculative
+    Buf.new(27, 79, 49, 59, 51, 83).decode => ｢Alt F4｣,
     Buf.new(27, 91, 49, 59, 50, 65).decode => ｢Shift Up｣,
     Buf.new(27, 91, 49, 59, 50, 66).decode => ｢Shift Down｣,
     Buf.new(27, 91, 49, 59, 50, 67).decode => ｢Shift Right｣,
     Buf.new(27, 91, 49, 59, 50, 68).decode => ｢Shift Left｣,
     Buf.new(27, 91, 49, 59, 50, 69).decode => ｢Shift Center｣,
-    Buf.new(27, 79, 49, 59, 51, 80).decode => ｢Alt F1｣,
-    Buf.new(27, 79, 49, 59, 51, 81).decode => ｢Alt F2｣,
-    Buf.new(27, 79, 49, 59, 51, 82).decode => ｢Alt F3｣,
-    Buf.new(27, 79, 49, 59, 51, 83).decode => ｢Alt F4｣,
     Buf.new(27, 91, 49, 59, 50, 80).decode => ｢Shift F1｣,
     Buf.new(27, 91, 49, 59, 50, 81).decode => ｢Shift F2｣,
     Buf.new(27, 91, 49, 59, 50, 82).decode => ｢Shift F3｣,
@@ -331,7 +337,7 @@ our $termios = Term::termios;
     Buf.new(27, 91, 49, 59, 56, 81).decode => ｢Ctrl Alt Shift F2｣,
     Buf.new(27, 91, 49, 59, 56, 82).decode => ｢Ctrl Alt Shift F3｣,
     Buf.new(27, 91, 49, 59, 56, 83).decode => ｢Ctrl Alt Shift F4｣,
-    Buf.new(27, 91, 50, 59, 50, 126).decode => ｢Shift Insert｣,
+    Buf.new(27, 91, 50, 59, 50, 126).decode => ｢Shift Insert｣, # Speculative
     Buf.new(27, 91, 50, 59, 51, 126).decode => ｢Alt Insert｣,
     Buf.new(27, 91, 51, 59, 50, 126).decode => ｢Shift Del｣,
     Buf.new(27, 91, 51, 59, 51, 126).decode => ｢Alt Del｣,
@@ -345,6 +351,7 @@ our $termios = Term::termios;
     Buf.new(27, 91, 54, 59, 51, 126).decode => ｢Alt PgDn｣,
     Buf.new(27, 91, 54, 59, 53, 126).decode => ｢Ctrl PgDn｣,
     Buf.new(27, 91, 54, 59, 55, 126).decode => ｢Ctrl Alt PgDn｣,
+
     Buf.new(27, 91, 49, 53, 59, 50, 126).decode => ｢Shift F5｣,
     Buf.new(27, 91, 49, 53, 59, 51, 126).decode => ｢Alt F5｣,
     Buf.new(27, 91, 49, 53, 59, 52, 126).decode => ｢Alt Shift F5｣,
@@ -522,8 +529,14 @@ That also means that it can be affected by the OS / window managers typing
 repeat setting. It doesn't see, and is not responding to the actual key press,
 rather the presence of key codes in the keyboard buffer.
 
+All of the Ctrl plus an alphabetic key sequences return uppercase alphabetics,
+regardless of the case of the key pressed. Not really a bug, just the reality of
+the situation, something to be aware of. 'Ctrl a' and 'Ctrl A' keypresses both
+return the same key codes so both evaluate to 'Ctrl A'. There isn't any way to
+differentiate.
+
 There are a few key combinations that I haven't yet been able to capture because
-something grabs the key codes before it can be processed.
+something else grabs the key code before it can be processed.
 
  Notably missing (or at least, unverified):
 
@@ -531,9 +544,15 @@ something grabs the key codes before it can be processed.
 =item Alt F2
 =item Alt F3
 =item Alt Tab
+=item Ctrl C
+=item Ctrl Z
 =item Ctrl Insert
-=item Shift Insert
 =item Ctrl Shift |
+=item Shift PgUp
+=item Shift PgDn
+=item Shift Home
+=item Shift End
+=item Shift Insert
 
 The key combination "Shift Insert" stuffs the keyboard buffer with whatever is
 in the cut/paste buffer rather than the actual key codes, so doesn't reliably
@@ -543,7 +562,6 @@ changes).
 
 This was written and tested on a US English keyboard. Characters on non-US
 keyboards may not have correct "cooked" mode support.
-
 
 
 =head1 AUTHOR
