@@ -62,7 +62,9 @@ Since Terminal::ReadKey interacts with the keyboard buffer rather than reading t
 
 That also means that it can be affected by the OS / window managers typing repeat setting. It doesn't see, and is not responding to the actual key press, rather the presence of key codes in the keyboard buffer.
 
-There are a few key combinations that I haven't yet been able to capture because something grabs the key codes before it can be processed.
+All of the Ctrl plus an alphabetic key sequences return uppercase alphabetics, regardless of the case of the key pressed. Not really a bug, just the reality of the situation, something to be aware of. 'Ctrl a' and 'Ctrl A' keypresses both return the same key codes so both evaluate to 'Ctrl A'. There isn't any way to differentiate.
+
+There are a few key combinations that I haven't yet been able to capture because something else grabs the key code before it can be processed.
 
     Notably missing (or at least, unverified):
 
@@ -74,11 +76,23 @@ There are a few key combinations that I haven't yet been able to capture because
 
   * Alt Tab
 
+  * Ctrl C
+
+  * Ctrl Z
+
   * Ctrl Insert
 
-  * Shift Insert
-
   * Ctrl Shift |
+
+  * Shift PgUp
+
+  * Shift PgDn
+
+  * Shift Home
+
+  * Shift End
+
+  * Shift Insert
 
 The key combination "Shift Insert" stuffs the keyboard buffer with whatever is in the cut/paste buffer rather than the actual key codes, so doesn't reliably return a repeatable keypress sequence (if the cut/paste buffer contents changes).
 
