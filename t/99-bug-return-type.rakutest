@@ -3,6 +3,8 @@
 use Test;
 use Test::Mock;
 
+plan 3;
+
 use Term::termios;
 use Terminal::ReadKey (:_testing);
 
@@ -25,4 +27,3 @@ sub MAIN {
 
     done-testing;
 }
-

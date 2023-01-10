@@ -1,4 +1,4 @@
-unit module Terminal::ReadKey;
+unit module Terminal::ReadKey:ver<0.0.2>:auth<zef:thundergnat>;
 
 use Term::termios;
 
@@ -258,8 +258,6 @@ our $termios = Term::termios;
     Buf.new(27, 125).decode => ｢Alt }｣,
     Buf.new(27, 126).decode => ｢Alt ~｣,
     Buf.new(27, 127).decode => ｢Alt Backspace｣,
-    Buf.new(50, 48).decode => ｢Shift Del｣,
-    Buf.new(52, 56).decode => ｢Shift Insert｣,
     Buf.new(27, 79, 80).decode => ｢F1｣,
     Buf.new(27, 79, 81).decode => ｢F2｣,
     Buf.new(27, 79, 82).decode => ｢F3｣,
@@ -284,6 +282,11 @@ our $termios = Term::termios;
     Buf.new(27, 91, 50, 49, 126).decode => ｢F10｣,
     Buf.new(27, 91, 50, 51, 126).decode => ｢F11｣,
     Buf.new(27, 91, 50, 52, 126).decode => ｢F12｣,
+    Buf.new(27, 91, 49, 59, 50, 65).decode => ｢Shift Up｣,
+    Buf.new(27, 91, 49, 59, 50, 66).decode => ｢Shift Down｣,
+    Buf.new(27, 91, 49, 59, 50, 67).decode => ｢Shift Right｣,
+    Buf.new(27, 91, 49, 59, 50, 68).decode => ｢Shift Left｣,
+    Buf.new(27, 91, 49, 59, 50, 69).decode => ｢Shift Center｣,
     Buf.new(27, 79, 49, 59, 51, 80).decode => ｢Alt F1｣,
     Buf.new(27, 79, 49, 59, 51, 81).decode => ｢Alt F2｣,
     Buf.new(27, 79, 49, 59, 51, 82).decode => ｢Alt F3｣,
