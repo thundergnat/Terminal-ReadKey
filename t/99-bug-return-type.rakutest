@@ -1,7 +1,9 @@
 use Test;
-use Terminal::ReadKey (:_testing);
+use Terminal::ReadKey :_testing;
 
-MAIN: {
-    lives-ok( { with-termios( sub {} ) }, "with-termios lives");
-    done-testing;
-}
+plan 1;
+
+lives-ok( { with-termios( sub {} ) }, "with-termios lives");
+
+done-testing;
+
