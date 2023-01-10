@@ -1,6 +1,8 @@
 Revision history for Terminal-ReadKey
 
 {{$NEXT}}
+
+0.0.2  2023-01-10T18:24:54-05:00
     - Deleted some redundant (incorrect) "cooked" key sequences
       [bugfix] Eliminate error inside async thread due to wrong return type
       Test for return type fix.
