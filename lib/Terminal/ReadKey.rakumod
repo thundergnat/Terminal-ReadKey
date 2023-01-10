@@ -3,6 +3,7 @@ unit module Terminal::ReadKey;
 use Term::termios;
 
 our %keyboard;
+our $termios = Term::termios;
 
 %keyboard<US> =  { # "cooked" mode key press hash, US layout
     Buf.new(0).decode => ｢Ctrl `｣,
@@ -397,17 +398,15 @@ sub cooked ($char, :$layout = 'US') is export(:cooked) {
     $char
 }
 
-use Term::termios;
-
 sub with-termios(Callable:D $fn, Bool:D :$echo = True) is export(:_testing) {
-    my $original-flags := Term::termios.new(:fd($*IN.native-descriptor)).getattr;
-    my $flags := Term::termios.new(:fd($*IN.native-descriptor)).getattr;
+    my $original-flags := $termios.new(:fd($*IN.native-descriptor)).getattr;
+    my $flags := $termios.new(:fd($*IN.native-descriptor)).getattr;
 
     $flags.unset_lflags('ICANON');
     $flags.unset_lflags('ECHO') unless $echo;
     $flags.setattr(:NOW);
 
-    my $result = $fn();
+    my $result := $fn();
     $original-flags.setattr(:NOW);
     $result;
 }
